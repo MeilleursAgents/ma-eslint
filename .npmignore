@@ -1,0 +1,13 @@
+# gitignore
+node_modules/
+esdoc/
+coverage/
+
+# npmignore
+.babelrc
+.eslintrc.json
+.prettierrc
+esdoc.json
+mocha.opts
+sample.png
+webpack.config.js
