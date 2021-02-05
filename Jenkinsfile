@@ -22,23 +22,19 @@ node {
         ]) {
             docker.image(container).inside("--entrypoint=''") {
                 stage('Init') {
-                    steps {
-                        sh '''
-                        # Configure your test steps here (checkout, npm install, tests etc)
-                        npm install
-                        '''
-                        }
+                      sh '''
+                      # Configure your test steps here (checkout, npm install, tests etc)
+                      npm install
+                      '''
                 }
                 stage('Release') {
                     environment {
                         GH_TOKEN = credentials('ma-jenkins-token')
                     }
-                    steps {
-                        sh '''
-                        # Run optional required steps before releasing
-                        npx semantic-release
-                        '''
-                    }
+                      sh '''
+                      # Run optional required steps before releasing
+                      npx semantic-release
+                      '''
                 }
             }
         }
