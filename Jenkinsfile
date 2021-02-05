@@ -21,9 +21,6 @@ node {
             string(credentialsId: 'packagecloud-read-npm-token', variable: 'PACKAGECLOUD_NPM_TOKEN')
         ]) {
             docker.image(container).inside("--entrypoint=''") {
-                environment {
-                    GH_TOKEN  = credentials('ma-jenkins-token')
-                }
                 stage('Init') {
                     steps {
                         sh '''
@@ -33,6 +30,9 @@ node {
                         }
                 }
                 stage('Release') {
+                    environment {
+                        GH_TOKEN = credentials('ma-jenkins-token')
+                    }
                     steps {
                         sh '''
                         # Run optional required steps before releasing
