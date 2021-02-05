@@ -16,10 +16,9 @@ node {
         def scmVars = checkout scm
     }
 
-
     try {
         withCredentials([
-            string(credentialsId: 'ma-jenkins', variable: 'GH_TOKEN'),
+            string(credentialsId: 'ma-jenkins-token', variable: 'GH_TOKEN'),
             string(credentialsId: 'packagecloud-read-npm-token', variable: 'PACKAGECLOUD_NPM_TOKEN')
         ]) {
             docker.image(container).inside("--entrypoint=''") {
